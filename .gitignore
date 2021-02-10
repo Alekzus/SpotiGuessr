@@ -44,6 +44,7 @@ captures/
 
 # IntelliJ
 *.iml
+.idea
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
@@ -248,3 +249,4 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/android,kotlin,java,androidstudio
 
+/app/src/main/res/values/font_certs.xml
