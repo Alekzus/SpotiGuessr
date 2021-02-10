@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="playlist_grid_height">200dp</dimen>
+    <dimen name="vertical_chain_space">54dp</dimen>
+    <dimen name="playlist_cover">100dp</dimen>
+</resources>

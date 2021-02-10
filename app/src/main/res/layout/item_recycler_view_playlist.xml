@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="playlist"
+            type="com.alexandre.marcq.spotiguessr.api.objects.playlist.Playlist" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/item_playlist_image"
+            android:layout_width="@dimen/playlist_cover"
+            android:layout_height="@dimen/playlist_cover"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:playlistImage="@{playlist.images}"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/playlist_name"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{playlist.name}"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/playlist_tracks"
+            app:layout_constraintEnd_toEndOf="@+id/item_playlist_image"
+            app:layout_constraintStart_toStartOf="@+id/item_playlist_image"
+            app:layout_constraintTop_toBottomOf="@+id/item_playlist_image"
+            tools:text="Playlist name" />
+
+        <TextView
+            android:id="@+id/playlist_tracks"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/playlist_name"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/playlist_name"
+            app:layout_constraintTop_toBottomOf="@+id/playlist_name"
+            app:tracksNumber="@{playlist.playlistTrackNumber.total}"
+            tools:text="15 tracks" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

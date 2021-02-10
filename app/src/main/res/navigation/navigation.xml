@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.alexandre.marcq.spotiguessr.menu.MenuFragment"
+        android:label="MenuFragment" >
+        <action
+            android:id="@+id/action_menuFragment_to_playlistsFragment"
+            app:destination="@id/playlistsFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playlistsFragment"
+        android:name="com.alexandre.marcq.spotiguessr.playlists.PlaylistsFragment"
+        android:label="playlists_fragment"
+        tools:layout="@layout/fragment_playlists" >
+        <action
+            android:id="@+id/action_playlistsFragment_to_configFragment"
+            app:destination="@id/configFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.alexandre.marcq.spotiguessr.game.GameFragment"
+        android:label="GameFragment" >
+        <argument
+            android:name="playlist"
+            app:argType="com.alexandre.marcq.spotiguessr.api.objects.playlist.Playlist" />
+        <action
+            android:id="@+id/action_gameFragment_to_scoreFragment"
+            app:destination="@id/scoreFragment"
+            app:popUpTo="@id/playlistsFragment" />
+        <argument
+            android:name="difficulty"
+            app:argType="com.alexandre.marcq.spotiguessr.utils.GameDifficulty" />
+        <argument
+            android:name="length"
+            app:argType="integer" />
+        <argument
+            android:name="tracksOnly"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="com.alexandre.marcq.spotiguessr.score.ScoreFragment"
+        android:label="ScoreFragment" >
+        <argument
+            android:name="score"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/configFragment"
+        android:name="com.alexandre.marcq.spotiguessr.config.ConfigFragment"
+        android:label="ConfigFragment" >
+        <action
+            android:id="@+id/action_configFragment_to_gameFragment"
+            app:destination="@id/gameFragment" >
+            <argument
+                android:name="tracksOnly"
+                android:defaultValue="false" />
+        </action>
+        <argument
+            android:name="playlist"
+            app:argType="com.alexandre.marcq.spotiguessr.api.objects.playlist.Playlist" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.alexandre.marcq.spotiguessr.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_configFragment"
+            app:destination="@id/configFragment" />
+    </fragment>
+</navigation>

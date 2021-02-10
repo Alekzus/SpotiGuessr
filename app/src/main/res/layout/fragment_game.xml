@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.alexandre.marcq.spotiguessr.game.GameViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/secondaryColor">
+
+        <!--<ImageView
+            android:id="@+id/game_playlist_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/playlist_cover_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.15"
+            app:playlistImage="@{viewModel.playlist.images}"
+            tools:src="@tools:sample/avatars" />-->
+
+        <TextView
+            android:id="@+id/game_progress"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackProgress="@{viewModel.currentTrackProgress}"
+            app:trackTotal="@{viewModel.numberOfRounds}"
+            tools:text="1 / 50" />
+
+        <TextView
+            android:id="@+id/game_message"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="@+id/game_progress"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/game_progress"
+            app:layout_constraintTop_toBottomOf="@+id/game_progress"
+            tools:text="Nice one!" />
+
+        <TextView
+            android:id="@+id/game_track_name"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/track_name"
+            app:layout_constraintEnd_toEndOf="@+id/game_message"
+            app:layout_constraintStart_toStartOf="@+id/game_message"
+            app:layout_constraintTop_toBottomOf="@+id/game_message"
+            tools:text="L'orage" />
+
+        <TextView
+            android:id="@+id/game_track_artist"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/artist"
+            app:layout_constraintEnd_toEndOf="@+id/game_track_name"
+            app:layout_constraintStart_toStartOf="@+id/game_track_name"
+            app:layout_constraintTop_toBottomOf="@+id/game_track_name"
+            tools:text="Pv Nova" />
+
+        <EditText
+            android:id="@+id/game_answer_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:autofillHints="false"
+            android:ems="10"
+            android:hint="@string/take_a_guess_here"
+            android:inputType="text"
+            android:textColor="@color/secondaryTextColor"
+            android:textColorHint="@color/secondaryLightColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/game_track_artist" />
+
+        <Button
+            android:id="@+id/game_skip_button"
+            style="@style/button_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:elevation="0dp"
+            android:onClick="@{() -> viewModel.skipTrack()}"
+            android:text="@string/skip"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/game_answer_edit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
