@@ -25,6 +25,8 @@ class PlaylistAdapter(private val onClickListener: OnClickListener) :
         }
     }
 
+    // Object used to optimize the rendering of RecyclerView
+    // Both functions are not exactly the same
     companion object DiffCallback : DiffUtil.ItemCallback<Playlist>() {
 
         override fun areItemsTheSame(oldItem: Playlist, newItem: Playlist): Boolean {
@@ -45,7 +47,10 @@ class PlaylistAdapter(private val onClickListener: OnClickListener) :
         }
     }
 
+    // Used to have a custom OnClickListener in the Fragment
+    // The parameter is a function which will be described when the adapter is created elsewhere
     class OnClickListener(val clickListener: (playlist: Playlist) -> Unit) {
+        // The onClick is equal to the function given above with playlist as a parameter ("it" elsewhere)
         fun onClick(playlist: Playlist) = clickListener(playlist)
     }
 }

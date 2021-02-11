@@ -13,6 +13,13 @@ class ConfigViewModel(
     private val _lengthIsWrong = MutableLiveData(true)
     val lengthIsWrong: LiveData<Boolean> = _lengthIsWrong
 
+    /**
+     * This function checks the input to make sure the values provided are valid.
+     *
+     * It will modify [_lengthIsWrong] regarding the result.
+     *
+     * @param text the input.
+     */
     fun checkInput(text: Editable?) {
         with(text.toString()) {
             if (isNotEmpty()) {

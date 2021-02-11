@@ -19,11 +19,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
+        // Used to connect to Spotify
         val connectionParams = ConnectionParams.Builder(CLIENT_ID)
             .setRedirectUri(REDIRECT_URI)
             .showAuthView(true)
             .build()
 
+        // Connecting to Spotify
         SpotifyAppRemote.connect(
             this,
             connectionParams,
@@ -38,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
+    // Important to disconnect from Spotify when onStop and onDestroy
     override fun onStop() {
         super.onStop()
         SpotifyAppRemote.disconnect(spotifyAppRemote)
@@ -48,6 +52,14 @@ class MainActivity : AppCompatActivity() {
         SpotifyAppRemote.disconnect(spotifyAppRemote)
     }
 
+    /**
+     * Gets user token.
+     *
+     * This function retrieves the token from Spotify.
+     * Used in [GameFragment] and [PlaylistsFragment].
+     *
+     * @return the token in the form of "Bearer `<TOKEN`>".
+     */
     fun getToken(): String {
         return "Bearer ${intent.getStringExtra("Token")}"
     }

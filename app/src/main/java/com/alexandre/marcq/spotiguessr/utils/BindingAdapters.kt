@@ -23,6 +23,7 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Playlist>?) {
 
 @BindingAdapter("tracksNumber")
 fun bindTracksNumber(numberView: TextView, number: Number?) {
+    // If the value is null, use "?"
     val numText = number ?: "?"
     numberView.text = numberView.context.getString(
         R.string.number_of_tracks,
@@ -38,7 +39,9 @@ fun bindPlaylistImage(playlistImageView: ImageView, images: List<Image?>) {
             .load(imgUri)
             .apply(
                 RequestOptions()
+                    // If there is no picture provided
                     .placeholder(R.drawable.loading_animation)
+                    // If the picture cannot be loaded
                     .error(R.drawable.ic_broken_image)
             )
             .into(playlistImageView)

@@ -26,7 +26,7 @@ class ConfigFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentConfigBinding.inflate(layoutInflater)
 
@@ -61,6 +61,8 @@ class ConfigFragment : Fragment() {
             }
         }
 
+        // This part handles the validation of input for the number of rounds
+        // It will change the color of the text and enable/disable the 'Done' button
         _viewModel.lengthIsWrong.observe(viewLifecycleOwner) {
             if (it) {
                 binding.configLengthEdit.setTextColor(resources.getColor(R.color.secondaryLightColor))
@@ -75,6 +77,11 @@ class ConfigFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * This function is used to determine which difficulty the user chose.
+     *
+     * @return the [difficulty][GameDifficulty]
+     */
     private fun getDifficulty(): GameDifficulty {
         return when (binding.configDifficultyGroup.checkedRadioButtonId) {
             R.id.config_easy_radio -> GameDifficulty.EASY

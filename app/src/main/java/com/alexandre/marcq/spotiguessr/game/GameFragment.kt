@@ -21,6 +21,7 @@ import com.alexandre.marcq.spotiguessr.utils.showKeyboard
 class GameFragment : Fragment() {
     private lateinit var binding: FragmentGameBinding
 
+    // Different dialog popups
     private lateinit var readyDialog: AlertDialog
     private lateinit var loadingDialog: AlertDialog
     private lateinit var errorDialog: AlertDialog
@@ -36,13 +37,14 @@ class GameFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentGameBinding.inflate(layoutInflater)
 
         binding.lifecycleOwner = this
 
         binding.viewModel = viewModel
 
+        // Getting the arguments from the ConfigFragment
         with(GameFragmentArgs.fromBundle(requireArguments())) {
             viewModel.numberOfRounds = length
             viewModel.tracksOnly = tracksOnly

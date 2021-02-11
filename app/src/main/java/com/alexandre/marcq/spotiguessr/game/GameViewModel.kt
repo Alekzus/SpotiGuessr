@@ -89,6 +89,7 @@ class GameViewModel(
             if (tracksOnly) {
                 _userGuessed.value = GameScoreStatus.ARTIST
                 userGuessedArtist = true
+                // TODO: 11/02/2021 Check if score should be incremented
                 score += 1
             }
             playerApi.play(
@@ -97,6 +98,11 @@ class GameViewModel(
         }
     }
 
+    /**
+     * This function get the round time depending on the difficulty the user chose.
+     *
+     * @return the [difficulty][GameDifficulty].
+     */
     private fun getRoundTime(): Long {
         return when (difficulty) {
             GameDifficulty.EASY -> Constants.TIME_EASY
@@ -105,6 +111,10 @@ class GameViewModel(
         }
     }
 
+    /**
+     * This function initializes the round countdown timer.
+     *
+     */
     fun initRoundTimer() {
         roundTimer = object : CountDownTimer(getRoundTime(), Constants.SECOND) {
             override fun onTick(millisUntilFinished: Long) {
@@ -118,6 +128,10 @@ class GameViewModel(
         }
     }
 
+    /**
+     * This function handles skipping a track, whether it is from the user or not.
+     *
+     */
     fun skipTrack() {
         if (userSkipped) {
             _userFailed.value = true
@@ -129,6 +143,10 @@ class GameViewModel(
         }
     }
 
+    /**
+     * This function pauses the player and prepares the variables for the next round.
+     *
+     */
     private fun nextTrack() {
         playerApi.pause()
         if (_currentTrackProgress.value == numberOfRounds) {
@@ -143,10 +161,14 @@ class GameViewModel(
         }
     }
 
-    private fun getScore(): Int? {
+    private fun getScore(): Int {
         return round(((score / (numberOfRounds.toFloat() * 2)) * 100)).toInt()
     }
 
+    /**
+     * This function loads the tracks for the round and prepares the variable for the starting round.
+     *
+     */
     private fun getTracksUris() {
         viewModelScope.launch {
             val getTracksDeferred =
@@ -175,6 +197,11 @@ class GameViewModel(
         _currentTrackProgress.value = 1
     }
 
+    /**
+     * This function handles the logic of the scoring.
+     *
+     * @param input the input.
+     */
     fun checkInput(input: CharSequence?) {
         val sanitizedInput = GameScore.sanitizeInput(input.toString())
         // TODO: 28/08/2020 Check score rules instead of just incrementing

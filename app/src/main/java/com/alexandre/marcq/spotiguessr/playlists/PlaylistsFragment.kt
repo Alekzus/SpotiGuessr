@@ -23,7 +23,7 @@ class PlaylistsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPlaylistsBinding.inflate(layoutInflater)
 
         binding.apply {
